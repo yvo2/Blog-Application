@@ -7,7 +7,9 @@
 
 global $config;
 $config = array(
-  "deploy"    => 'live',
+  "baseurl"  => 'http://localhost/blog',
+
+  "deploy"   => 'live',
 
   "database" => array(
     "host"      => 'localhost:3306',
