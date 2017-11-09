@@ -1,6 +1,14 @@
 <?php
   require_once './config.php';
+  require_once 'repository/UserRepository.php';
   global $config;
+
+  @$selectedBlog = $_GET["blogid"];
+
+  if (isset($selectedBlog)) {
+    $userRepository = new UserRepository();
+    $user = $userRepository->getById($selectedBlog);
+  }
  ?>
 <!DOCTYPE html>
   <html>
@@ -17,10 +25,10 @@
     <body>
       <nav>
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo center">Blog</a>
+          <a href="<?php echo($config["path"]); if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>" class="brand-logo center"><?php if (isset($user)) { echo $user->name; } else { echo 'Blog'; } ?></a>
           <ul class="left">
-            <li><a href="<?= $config["path"] ?>blog/all">Blog auswählen</a></li>
-            <li><a href="<?= $config["path"] ?>blog">Ansehen</a></li>
+            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog auswählen</a></li>
+            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Ansehen</a></li>
             <!--<li class="active"><a href="collapsible.html">JavaScript</a></li>-->
           </ul>
         </div>

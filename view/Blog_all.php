@@ -1,8 +1,15 @@
 Wähle einen Blog aus<br>
 <?php
+@$selectedBlog = $_GET["blogid"];
 while ($row = $users->fetch_object()) {
-?>
-    <a class="waves-effect waves-light btn full-width" href="?blogid=<?= $row->id ?>"><?= $row->name ?></a>
-<?php
+  if ($selectedBlog == $row->id) {
+    ?>
+        <span class="waves-effect waves-light btn half-width button-margin disabled left"><?= $row->name ?></span>
+    <?php
+  } else {
+    ?>
+        <a class="waves-effect waves-light btn half-width button-margin left" href="?blogid=<?= $row->id ?>"><?= $row->name ?></a>
+    <?php
+  }
 }
 ?>

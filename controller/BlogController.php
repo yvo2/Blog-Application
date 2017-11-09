@@ -5,7 +5,8 @@ require_once 'repository/UserRepository.php';
 class BlogController {
 
   public function index() {
-    $view = new View();
+    $view = new View('Blog_index');
+    $view->display();
   }
 
   public function all() {

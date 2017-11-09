@@ -1,9 +1,11 @@
 <?php
+require_once 'lib/View.php';
 
 class DefaultController {
 
   public function index() {
-    echo "Hii";
+    $view = new View('Default_index');
+    $view->display();
   }
 
 }
