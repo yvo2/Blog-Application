@@ -16,7 +16,7 @@
   * Get the connection to the database
   * Or open an new one if it isn't opened yet
   */
-  private static function getConnection() {
+  public static function getConnection() {
     // Not connected?
     if (self::$connection == null) {
       global $config;
@@ -32,9 +32,9 @@
       }
       self::$connection->set_charset('utf8');
     }
-  }
 
-  return connection::$connection;
+    return self::$connection;
+  }
 }
 
 ?>

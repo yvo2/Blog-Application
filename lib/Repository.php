@@ -29,6 +29,21 @@ class Repository {
       return $row;
     }
 
+    /**
+     * Read all entries
+     * @return result The ResultSet to iterate over.
+     */
+    public function getAll() {
+     $query = "SELECT * FROM {$this->tableName}";
+     $statement = Database::getConnection()->prepare($query);
+     $statement->execute();
+     $result = $statement->get_result();
+     if (!$result) {
+         throw new Exception($statement->error);
+     }
+     return $result;
+    }
+
 }
 
  ?>

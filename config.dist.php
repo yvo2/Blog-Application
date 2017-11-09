@@ -15,7 +15,7 @@ $config = array(
     "host"      => 'localhost:3306',
     "username"  => 'root',
     "password"  => '',
-    "database"  => 'routedb'
+    "database"  => 'blogdb'
   )
 );
 
