@@ -10,6 +10,7 @@ class Router {
     }
 
     $relPath = substr($path, strlen($config["path"]));
+    $relPath = explode('?', $relPath)[0];
 
     $controller = "Default";
     $action = "index";
