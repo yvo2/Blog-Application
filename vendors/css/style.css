@@ -15,3 +15,11 @@
 .nav-wrapper {
   background-color: #26a69a
 }
+
+.blog-title {
+  float: left;
+}
+
+.blog-date {
+  float: right;
+}
