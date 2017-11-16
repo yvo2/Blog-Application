@@ -9,3 +9,11 @@
 .button-margin {
   margin-bottom: 10px;
 }
+
+.blog-title {
+  float: left;
+}
+
+.blog-date {
+  float: right;
+}
