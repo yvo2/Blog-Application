@@ -27,8 +27,9 @@
         <div class="nav-wrapper">
           <a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>" class="brand-logo center"><?php if (isset($user)) { echo $user->name; } else { echo 'Blog'; } ?></a>
           <ul class="left">
-            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog auswählen</a></li>
-            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Ansehen</a></li>
+            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Mitglied auswählen</a></li>
+            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog ansehen</a></li>
+            <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Profil</a></li>
             <!--<li class="active"><a href="collapsible.html">JavaScript</a></li>-->
           </ul>
         </div>

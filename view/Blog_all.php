@@ -1,4 +1,4 @@
-Wähle einen Blog aus<br>
+<div>Wähle ein Mitglied aus:</div><br>
 <?php
 @$selectedBlog = $_GET["blogid"];
 while ($row = $users->fetch_object()) {
