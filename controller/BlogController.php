@@ -21,6 +21,23 @@ class BlogController {
     $view->display();
   }
 
+  public function single() {
+    @$selectedBlog = $_GET["blogid"];
+    @$entryId = $_GET["entryId"];
+
+    $blogRepository = new BlogRepository();
+    $userRepository = new UserRepository();
+
+    $view = new View('Blog_single');
+
+    if (isset($selectedBlog)) {
+          $view->user = $userRepository->getById($selectedBlog);
+          $view->blogEntry = $blogRepository->getById($entryId);
+    }
+
+    $view->display();
+  }
+
   public function all() {
     $userRepository = new UserRepository();
     $users = $userRepository->getAll();
