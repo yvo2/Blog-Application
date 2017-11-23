@@ -12,6 +12,23 @@ class UserController {
     $view->display();
   }
 
+  public function login() {
+    $view = new View('User_login');
+
+    $view->display();
+  }
+
+  public function register() {
+    $view = new View('User_register');
+
+    $view->display();
+  }
+
+  public function logout() {
+    $view = new View('User_logout');
+
+    $view->display();
+  }
 
 }
 
