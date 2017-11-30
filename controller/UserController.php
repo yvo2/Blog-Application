@@ -59,6 +59,7 @@ class UserController {
     @$email = $_POST["email"];
     @$name = $_POST["name"];
     @$password = $_POST["password"];
+    @$passwordRepeat = $_POST["password-repeat"];
 
     $view->name = $name;
     $view->email = $email;
@@ -80,6 +81,12 @@ class UserController {
         $view->invalid = true;
         array_push($view->properties['validationErrors'], "Diese Email-Adresse ist bereits belegt.");
       }
+
+      if ($password != $passwordRepeat) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Die Passwörter stimmen nicht überein.");
+      }
+
       if (!$view->invalid) {
         $userRepository->register($email, $name, $password);
 
@@ -94,7 +101,8 @@ class UserController {
   }
 
   public function logout() {
-    session_destroy();
+    $sessionManager = new SessionManager();
+    $sessionManager->logout();
 
     global $config;
     $path = $config["path"];

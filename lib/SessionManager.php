@@ -23,6 +23,10 @@ class SessionManager {
 
       return $user;
     }
+
+    public function logout() {
+      session_destroy();
+    }
 }
 
 ?>
