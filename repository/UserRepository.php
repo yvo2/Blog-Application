@@ -28,6 +28,38 @@ class UserRepository extends Repository {
     return $statement->execute();
   }
 
+  public function checkCredentials($email, $password) {
+    $password = md5($password);
+
+    $query = "SELECT COUNT(*) AS anzahl FROM {$this->tableName} WHERE email=? AND password=?";
+    $statement = Database::getConnection()->prepare($query);
+    $statement->bind_param('ss', $email, $password);
+    $statement->execute();
+    $result = $statement->get_result();
+    if (!$result) {
+        return false;
+    }
+    $row = $result->fetch_object();
+    $result->close();
+    return $row->anzahl != 0;
+  }
+
+  public function getByCredentials($email, $password) {
+    $password = md5($password);
+
+    $query = "SELECT * FROM {$this->tableName} WHERE email=? AND password=?";
+    $statement = Database::getConnection()->prepare($query);
+    $statement->bind_param('ss', $email, $password);
+    $statement->execute();
+    $result = $statement->get_result();
+    if (!$result) {
+        return false;
+    }
+    $row = $result->fetch_object();
+    $result->close();
+    return $row;
+  }
+
 }
 
  ?>

@@ -1,8 +1,9 @@
 <?php
+/* if (class_exists('SessionHandler')) {
+  return;
+} */
 
-require_once '../repository/UserRepository.php';
-
-class SessionHandler {
+class SessionManager {
 
     public function signInAsId($id) {
       $_SESSION["userId"] = $id;

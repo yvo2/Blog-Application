@@ -1,5 +1,6 @@
 <?php
 require_once 'lib/View.php';
+require_once 'lib/SessionManager.php';
 require_once 'repository/UserRepository.php';
 require_once 'config.php';
 
@@ -15,6 +16,37 @@ class UserController {
 
   public function login() {
     $view = new View('User_login');
+    $view->invalid = false;
+
+    @$email = $_POST["email"];
+    @$password = $_POST["password"];
+
+    $view->email = $email;
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $userRepository = new UserRepository();
+
+      if (!isset($email) || !isset($password)) {
+        $view->invalid = true;
+      }
+
+      if (!$userRepository->checkCredentials($email, $password)) {
+        $view->invalid = true;
+      }
+
+      if (!$view->invalid) {
+        $sessionHandler = new SessionManager();
+        var_dump($sessionHandler->isSignedIn());
+
+        $user = $userRepository->getByCredentials($email, $password);
+
+        $sessionHandler->signInAsId($user->id);
+        global $config;
+        $path = $config["path"];
+        header("Location: {$path}user");
+        die("Login successfull.");
+      }
+    }
 
     $view->display();
   }
@@ -48,13 +80,14 @@ class UserController {
         $view->invalid = true;
         array_push($view->properties['validationErrors'], "Diese Email-Adresse ist bereits belegt.");
       }
+      if (!$view->invalid) {
+        $userRepository->register($email, $name, $password);
 
-      $userRepository->register($email, $name, $password);
-
-      global $config;
-      $path = $config["path"];
-      header("Location: {$path}user");
-      die("Registered successfully.");
+        global $config;
+        $path = $config["path"];
+        header("Location: {$path}user");
+        die("Registered successfully.");
+      }
     }
 
     $view->display();
