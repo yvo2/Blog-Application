@@ -1,7 +1,5 @@
 <?php
-/* if (class_exists('SessionHandler')) {
-  return;
-} */
+require_once 'repository/UserRepository.php';
 
 class SessionManager {
 
@@ -26,5 +24,7 @@ class SessionManager {
       return $user;
     }
 }
+
+$activeUser = new SessionHandler();
 
 ?>

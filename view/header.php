@@ -30,8 +30,18 @@
             <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Mitglied auswählen</a></li>
             <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog ansehen</a></li>
             <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Profil</a></li>
-            <!--<li class="active"><a href="collapsible.html">JavaScript</a></li>-->
           </ul>
+          <?php if (isSignedIn()) { ?>
+          <ul class="right">
+            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Hallo <?php $activeUser ?></a></li>
+            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Abmelden</a></li>
+          </ul
+        <?php } else { ?>
+          <ul class="right">
+            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Anmelden</a></li>
+          </ul
+        <?php } ?>
+
         </div>
       </nav>
 
