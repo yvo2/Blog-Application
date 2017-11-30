@@ -1,6 +1,6 @@
 <?php
 
-require_once '../repository/UserRepository.php';
+require_once './repository/UserRepository.php';
 
 class SessionHandler {
 
@@ -25,5 +25,7 @@ class SessionHandler {
       return $user;
     }
 }
+
+$activeUser = new SessionHandler();
 
 ?>
