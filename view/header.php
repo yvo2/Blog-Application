@@ -36,7 +36,7 @@
           </ul>
           <?php if ($sessionManager->isSignedIn()) { ?>
           <ul class="right">
-            <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Hallo <?= $sessionManager->getUser()->name ?></a></li>
+            <li><a href="<?= $config["path"] ?>member<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Hallo <?= $sessionManager->getUser()->name ?></a></li>
             <li><a href="<?= $config["path"] ?>user/logout<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Abmelden</a></li>
           </ul
         <?php } else { ?>
