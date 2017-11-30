@@ -3,7 +3,7 @@
 class View {
 
   private $viewfile;
-  private $properties = array();
+  public $properties = array();
   public function __construct($viewfile) {
       $this->viewfile = "view/$viewfile.php";
   }

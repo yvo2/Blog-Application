@@ -24,3 +24,12 @@
 .blog-date {
   float: right;
 }
+
+.row-centered {
+  display: flex;
+  justify-content: center;
+}
+
+.input-form {
+  width: 500px;
+}
