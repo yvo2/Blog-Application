@@ -3,7 +3,7 @@ require_once './config.php';
 global $config;
 
 if (isset($blogEntries)) {
-  if (count($blogEntries) == 0) {
+  if ($blogEntries->num_rows == 0) {
     ?>
       <h2>Noch keine Blogbeiträge vorhanden.</h2>
       <span>Dieser User wird bestimmt bald seinen ersten Eintrag veröffentlichen!</span>
