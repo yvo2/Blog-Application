@@ -94,9 +94,12 @@ class UserController {
   }
 
   public function logout() {
-    $view = new View('User_logout');
+    session_destroy();
 
-    $view->display();
+    global $config;
+    $path = $config["path"];
+    header("Location: {$path}");
+    die("Logged out successfully.");
   }
 
 }

@@ -1,7 +1,10 @@
 <?php
   require_once './config.php';
   require_once 'repository/UserRepository.php';
+  require_once 'lib/SessionManager.php';
   global $config;
+
+  $sessionManager = new SessionManager();
 
   @$selectedBlog = $_GET["blogid"];
 
@@ -31,14 +34,15 @@
             <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog ansehen</a></li>
             <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Profil</a></li>
           </ul>
-          <?php if (isSignedIn()) { ?>
+          <?php if ($sessionManager->isSignedIn()) { ?>
           <ul class="right">
-            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Hallo <?php $activeUser ?></a></li>
-            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Abmelden</a></li>
+            <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Hallo <?= $sessionManager->getUser()->name ?></a></li>
+            <li><a href="<?= $config["path"] ?>user/logout<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Abmelden</a></li>
           </ul
         <?php } else { ?>
           <ul class="right">
-            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Anmelden</a></li>
+            <li><a href="<?= $config["path"] ?>user/login<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Anmelden</a></li>
+            <li><a href="<?= $config["path"] ?>user/register<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Registrieren</a></li>
           </ul
         <?php } ?>
 

@@ -18,13 +18,11 @@ class SessionManager {
       }
 
       $userRepository = new UserRepository();
-      $user = (object) $userRepository->readById($_SESSION["userId"]);
+      $user = (object) $userRepository->getById($_SESSION["userId"]);
       $user->signedIn = true;
 
       return $user;
     }
 }
-
-$activeUser = new SessionHandler();
 
 ?>
