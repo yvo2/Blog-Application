@@ -17,6 +17,56 @@ class MemberController {
     $view->display();
   }
 
+  public function add() {
+    $sessionManager = new SessionManager();
+    if (!$sessionManager->isSignedIn()) {
+      $view = new View('No_access');
+      $view->display();
+      exit();
+    }
+
+    @$title = $_POST["title"];
+    @$content = $_POST["content"];
+
+    $view = new View('Member_add');
+    $view->invalid = false;
+    $view->validationErrors = array();
+
+    $view->title = $title;
+    $view->content = $content;
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+      if (!isset($title)) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Bitte gib einen Titel ein.");
+      }
+
+      if (!isset($content)) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Bitte gib einen Text ein.");
+      }
+
+      if (isset($title) && strlen($title) < 1) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Der Titel muss mindestens ein Zeichen enthalten.");
+      }
+
+      if (isset($title) && strlen($title) > 65) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Der Titel darf maximal 65 Zeichen enthalten.");
+      }
+
+      if (isset($content) && strlen($content) < 4) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Der Inhalt muss mindestens 4 Zeichen lang sein.");
+      }
+
+    }
+
+    $view->display();
+  }
+
 }
 
  ?>

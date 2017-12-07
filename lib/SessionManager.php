@@ -24,6 +24,14 @@ class SessionManager {
       return $user;
     }
 
+    public function getUserId() {
+      if (!$this->isSignedIn()) {
+        return null;
+      }
+
+      return $_SESSION["userId"];
+    }
+
     public function logout() {
       session_destroy();
     }

@@ -2,6 +2,12 @@
 require_once './config.php';
 global $config;
 
+if ($canEdit) {
+  ?>
+    <a class="waves-effect waves-light btn" href="<?= $config["path"] ?>member/add?blogid=<?= $selectedBlog ?>">+ Eintrag erstellen</a>
+  <?php
+}
+
 if (isset($blogEntries)) {
   if ($blogEntries->num_rows == 0) {
     ?>

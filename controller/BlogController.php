@@ -1,5 +1,6 @@
 <?php
 require_once 'lib/View.php';
+require_once 'lib/SessionManager.php';
 require_once 'repository/UserRepository.php';
 require_once 'repository/BlogRepository.php';
 
@@ -14,8 +15,11 @@ class BlogController {
     $view = new View('Blog_index');
 
     if (isset($selectedBlog)) {
+          $sessionManager = new SessionManager();
+
           $view->user = $userRepository->getById($selectedBlog);
           $view->blogEntries = $blogRepository->getByUserId($selectedBlog);
+          $view->canEdit = $sessionManager->getUserId() == $view->user->id;
     }
 
     $view->display();
