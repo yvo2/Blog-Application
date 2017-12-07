@@ -25,4 +25,5 @@
   <label>Inhalt:
     <textarea name="content" class="materialize-textarea"><?= $content ?></textarea>
   </label>
+  <input type="submit" class="waves-effect waves-light btn" value="Beitrag erstellen und veröffentlichen">
 </form>
