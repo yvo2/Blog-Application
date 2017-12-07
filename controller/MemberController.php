@@ -1,6 +1,8 @@
 <?php
+require_once 'config.php';
 require_once 'lib/View.php';
 require_once 'lib/SessionManager.php';
+require_once 'repository/BlogRepository.php';
 
 class MemberController {
 
@@ -60,6 +62,21 @@ class MemberController {
       if (isset($content) && strlen($content) < 4) {
         $view->invalid = true;
         array_push($view->properties['validationErrors'], "Der Inhalt muss mindestens 4 Zeichen lang sein.");
+      }
+
+      if (!$view->invalid) {
+
+        $escapedTitle = htmlentities($title);
+        $escapedContent = htmlentities($content);
+        $userId = $sessionManager->getUserId();
+
+        $blogRepository = new BlogRepository();
+
+        if ($blogRepository->add($userId, $escapedTitle, $escapedContent)) {
+          $lastId = $blogRepository->getLastInserted($userId);
+          global $config;
+          header("Location:{$config["path"]}blog/single?blogid=" . $userId . "&entryId=" . $lastId);
+        }
       }
 
     }
