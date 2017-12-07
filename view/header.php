@@ -33,6 +33,9 @@
             <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Mitglied auswählen</a></li>
             <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog ansehen</a></li>
             <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Profil</a></li>
+            <?php if ($sessionManager->isSignedIn()) { ?>
+            <li><a href="<?= $config["path"] ?>blog?blogid=<?= $sessionManager->getUserId() ?>">Member-Bereich</a></li>
+            <?php } ?>
           </ul>
           <?php if ($sessionManager->isSignedIn()) { ?>
           <ul class="right">
