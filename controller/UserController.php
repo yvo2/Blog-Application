@@ -43,7 +43,7 @@ class UserController {
         $sessionHandler->signInAsId($user->id);
         global $config;
         $path = $config["path"];
-        header("Location: {$path}user");
+        header("Location:{$path}user?blogid=" . $user->id);
         die("Login successfull.");
       }
     }
