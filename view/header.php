@@ -6,7 +6,7 @@
 
   $sessionManager = new SessionManager();
 
-  @$selectedBlog = $_GET["blogid"];
+  @$selectedBlog = $_GET["blogId"];
 
   if (isset($selectedBlog)) {
     $userRepository = new UserRepository();
@@ -28,24 +28,24 @@
     <body>
       <nav>
         <div class="nav-wrapper">
-          <a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>" class="brand-logo center"><?php if (isset($user)) { echo $user->name; } else { echo 'Blog'; } ?></a>
+          <a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>" class="brand-logo center"><?php if (isset($user)) { echo $user->name; } else { echo 'Blog'; } ?></a>
           <ul class="left">
-            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Mitglied auswählen</a></li>
-            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog ansehen</a></li>
-            <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Profil</a></li>
+            <li><a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Mitglied auswählen</a></li>
+            <li><a href="<?= $config["path"] ?>blog<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Blog ansehen</a></li>
+            <li><a href="<?= $config["path"] ?>user<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Profil</a></li>
             <?php if ($sessionManager->isSignedIn()) { ?>
-            <li><a href="<?= $config["path"] ?>blog?blogid=<?= $sessionManager->getUserId() ?>">Member-Bereich</a></li>
+            <li><a href="<?= $config["path"] ?>blog?blogId=<?= $sessionManager->getUserId() ?>">Member-Bereich</a></li>
             <?php } ?>
           </ul>
           <?php if ($sessionManager->isSignedIn()) { ?>
           <ul class="right">
-            <li><a href="<?= $config["path"] ?>member<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Hallo <?= $sessionManager->getUser()->name ?></a></li>
-            <li><a href="<?= $config["path"] ?>user/logout<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Abmelden</a></li>
+            <li><a href="<?= $config["path"] ?>member<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Hallo <?= $sessionManager->getUser()->name ?></a></li>
+            <li><a href="<?= $config["path"] ?>user/logout<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Abmelden</a></li>
           </ul
         <?php } else { ?>
           <ul class="right">
-            <li><a href="<?= $config["path"] ?>user/login<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Anmelden</a></li>
-            <li><a href="<?= $config["path"] ?>user/register<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Registrieren</a></li>
+            <li><a href="<?= $config["path"] ?>user/login<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Anmelden</a></li>
+            <li><a href="<?= $config["path"] ?>user/register<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Registrieren</a></li>
           </ul
         <?php } ?>
 

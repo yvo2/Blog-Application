@@ -9,7 +9,7 @@ class UserController {
   public function index() {
     $view = new View('User_index');
     $userRepository = new UserRepository();
-    @$selectedBlog = $_GET["blogid"];
+    @$selectedBlog = $_GET["blogId"];
     $view->user = $userRepository->getById($selectedBlog);
     $view->display();
   }
@@ -43,7 +43,7 @@ class UserController {
         $sessionHandler->signInAsId($user->id);
         global $config;
         $path = $config["path"];
-        header("Location:{$path}user?blogid=" . $user->id);
+        header("Location:{$path}user?blogId=" . $user->id);
         die("Login successfull.");
       }
     }

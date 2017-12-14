@@ -75,7 +75,7 @@ class MemberController {
         if ($blogRepository->add($userId, $escapedTitle, $escapedContent)) {
           $lastId = $blogRepository->getLastInserted($userId);
           global $config;
-          header("Location:{$config["path"]}blog/single?blogid=" . $userId . "&entryId=" . $lastId);
+          header("Location:{$config["path"]}blog/single?blogId=" . $userId . "&entryId=" . $lastId);
         }
       }
 
@@ -85,7 +85,7 @@ class MemberController {
   }
 
   public function edit() {
-    //@$selectedBlog = $_GET["blogid"];
+    //@$selectedBlog = $_GET["blogId"];
     @$entryId = $_GET["entryId"];
 
     $sessionManager = new SessionManager();
@@ -168,7 +168,7 @@ class MemberController {
 
         if ($response) {
           global $config;
-          header("Location:{$config["path"]}blog/single?blogid=" . $userId . "&entryId=" . $entryId);
+          header("Location:{$config["path"]}blog/single?blogId=" . $userId . "&entryId=" . $entryId);
         }
       }
 
@@ -221,7 +221,7 @@ class MemberController {
 
         if ($response) {
           global $config;
-          header("Location:{$config["path"]}blog?blogid=" . $userId);
+          header("Location:{$config["path"]}blog?blogId=" . $userId);
         }
       }
 

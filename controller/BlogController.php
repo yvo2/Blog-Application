@@ -7,7 +7,7 @@ require_once 'repository/BlogRepository.php';
 class BlogController {
 
   public function index() {
-    @$selectedBlog = $_GET["blogid"];
+    @$selectedBlog = $_GET["blogId"];
 
     $blogRepository = new BlogRepository();
     $userRepository = new UserRepository();
@@ -26,17 +26,24 @@ class BlogController {
   }
 
   public function single() {
-    @$selectedBlog = $_GET["blogid"];
+    @$selectedBlog = $_GET["blogId"];
     @$entryId = $_GET["entryId"];
 
     $blogRepository = new BlogRepository();
     $userRepository = new UserRepository();
+    $sessionManager = new SessionManager();
 
     $view = new View('Blog_single');
 
     if (isset($selectedBlog)) {
           $view->user = $userRepository->getById($selectedBlog);
           $view->blogEntry = $blogRepository->getById($entryId);
+    }
+
+    if ($view->user->id == $sessionManager->getUserId()) {
+      $view->hasPermission = true;
+    } else {
+      $view->hasPermission = false;
     }
 
     $view->display();

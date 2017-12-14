@@ -1,8 +1,10 @@
 <?php
 
+require_once 'config.php';
+
 $content = str_replace("\r\n", "<br>", $content);
 global $config;
-$cancel = $config["path"] . "blog/single?blogid=" . $userId . "&entryId=" . $_GET["entryId"];
+$cancel = $config["path"] . "blog/single?blogId=" . $userId . "&entryId=" . $_GET["entryId"];
 
  ?>
 <form method="post">
