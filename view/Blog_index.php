@@ -16,7 +16,7 @@ if (isset($blogEntries)) {
     <?php
   } else {
     while ($blogEntry = $blogEntries->fetch_object()) {
-      // $blogEntry->content = str_replace("\n", "<br>", $blogEntry->content);
+      // $blogEntry->content = str_replace("\r\n", "<br>", $blogEntry->content);
 
       ?>
         <div class="blog-entry">
