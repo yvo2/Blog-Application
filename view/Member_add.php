@@ -1,4 +1,10 @@
 <?php
+
+require_once 'config.php';
+
+global $config;
+$cancel = $config["path"] . "blog?blogId=" . $_GET["blogId"];
+
   if ($invalid) {
     ?>
     <div class="row" id="alert_box">
@@ -26,4 +32,5 @@
     <textarea name="content" class="materialize-textarea"><?= $content ?></textarea>
   </label>
   <input type="submit" class="waves-effect waves-light btn" value="Beitrag erstellen und veröffentlichen">
+  <a href="<?= $cancel ?>" class="waves-effect waves-light btn">Abbrechen</a>
 </form>
