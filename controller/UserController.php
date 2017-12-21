@@ -100,7 +100,7 @@ class UserController {
 
         global $config;
         $path = $config["path"];
-        header("Location: {$path}user");
+        header("Location: {$path}user/login?registered=true");
         die("Registered successfully.");
       }
     }

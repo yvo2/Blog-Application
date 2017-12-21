@@ -18,18 +18,35 @@
     </div>
     <?php
   }
- ?>
+ if (isset($_GET["registered"]) && $_GET["registered"] == "true") {
+   ?>
+   <div class="row" id="alert_box">
+     <div class="col s12 m12">
+       <div class="card successCard">
+         <div class="row">
+           <div class="col s12 m10">
+             <div class="card-content white-text">
+               Du hast dich erfolgreich registriert. Du kannst dich jetzt anmelden.
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <?php
+ }
+?>
 <div class="row row-centered">
     <form class="col input-form" method="post">
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" name="email" class="validate" value="<?= $email ?>">
+          <input id="email" type="email" name="email" class="validate" value="<?= $email ?>" required>
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" name="password" type="password" class="validate">
+          <input id="password" name="password" type="password" class="validate" required minlength=8>
           <label for="password">Password</label>
         </div>
       </div>
