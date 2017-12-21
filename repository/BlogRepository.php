@@ -24,6 +24,20 @@ class BlogRepository extends Repository {
     return $statement->execute();
   }
 
+  public function edit($entryId, $title, $content) {
+    $query = "UPDATE {$this->tableName} SET title = ?, content = ? WHERE id = ?";
+    $statement = Database::getConnection()->prepare($query);
+    $statement->bind_param('ssi', $title, $content, $entryId);
+    return $statement->execute();
+  }
+
+  public function delete($entryId) {
+    $query = "DELETE FROM {$this->tableName} WHERE id = ?";
+    $statement = Database::getConnection()->prepare($query);
+    $statement->bind_param('i', $entryId);
+    return $statement->execute();
+  }
+
   public function getLastInserted($userId) {
     $query = "SELECT id FROM {$this->tableName} WHERE userId = ? ORDER BY id DESC LIMIT 1";
     $statement = Database::getConnection()->prepare($query);

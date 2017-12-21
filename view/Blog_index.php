@@ -4,7 +4,7 @@ global $config;
 
 if ($canEdit) {
   ?>
-    <a class="waves-effect waves-light btn" href="<?= $config["path"] ?>member/add?blogid=<?= $selectedBlog ?>">+ Eintrag erstellen</a>
+    <a class="waves-effect waves-light btn" href="<?= $config["path"] ?>member/add?blogId=<?= $selectedBlog ?>">+ Eintrag erstellen</a>
   <?php
 }
 
@@ -16,14 +16,14 @@ if (isset($blogEntries)) {
     <?php
   } else {
     while ($blogEntry = $blogEntries->fetch_object()) {
-      // $blogEntry->content = str_replace("\n", "<br>", $blogEntry->content);
+      // $blogEntry->content = str_replace("\r\n", "<br>", $blogEntry->content);
 
       ?>
         <div class="blog-entry">
-          <a href="<?= $config["path"] ?>blog/single?blogid=<?= $selectedBlog ?>&entryId=<?= $blogEntry->id ?>"><h3 class="blog-title"><?= $blogEntry->title ?></h3></a><h5 class="blog-date"><?= $blogEntry->createdAt ?>, <?= $user->name ?></h5>
+          <a href="<?= $config["path"] ?>blog/single?blogId=<?= $selectedBlog ?>&entryId=<?= $blogEntry->id ?>"><h3 class="blog-title"><?= $blogEntry->title ?></h3></a><h5 class="blog-date"><?= $blogEntry->createdAt ?>, <?= $user->name ?></h5>
           <div class="clearfix"></div>
           <div class="blog-content"><?= substr($blogEntry->content, 0, 200); ?>...</div>
-          <a href="<?= $config["path"] ?>blog/single?blogid=<?= $selectedBlog ?>&entryId=<?= $blogEntry->id ?>">Weiterlesen</a>
+          <a href="<?= $config["path"] ?>blog/single?blogId=<?= $selectedBlog ?>&entryId=<?= $blogEntry->id ?>">Weiterlesen</a>
         </div>
       <?php
     }
@@ -31,7 +31,7 @@ if (isset($blogEntries)) {
 } else {
   ?>
     <h2>Hier ist (noch) nichts.</h2>
-    <a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogid=".$selectedBlog; } ?>">Blog auswählen</a>
+    <a href="<?= $config["path"] ?>blog/all<?php if (isset($selectedBlog)) { echo "?blogId=".$selectedBlog; } ?>">Blog auswählen</a>
   <?php
 }
 

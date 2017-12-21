@@ -9,7 +9,7 @@ class UserController {
   public function index() {
     $view = new View('User_index');
     $userRepository = new UserRepository();
-    @$selectedBlog = $_GET["blogid"];
+    @$selectedBlog = $_GET["blogId"];
     $view->user = $userRepository->getById($selectedBlog);
     $view->display();
   }
@@ -17,6 +17,7 @@ class UserController {
   public function login() {
     $view = new View('User_login');
     $view->invalid = false;
+    $view->validationErrors = array();
 
     @$email = $_POST["email"];
     @$password = $_POST["password"];
@@ -26,12 +27,19 @@ class UserController {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $userRepository = new UserRepository();
 
-      if (!isset($email) || !isset($password)) {
+      if (!isset($email) || strlen($email) == 0) {
         $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Bitte gib eine valide Email-Adresse ein.");
       }
 
-      if (!$userRepository->checkCredentials($email, $password)) {
+      if (!isset($password) || strlen($password) == 0) {
         $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Bitte gib ein valides Passwort ein.");
+      }
+
+      if (!$userRepository->checkCredentials($email, $password) && !$view->invalid) {
+        $view->invalid = true;
+        array_push($view->properties['validationErrors'], "Die Email-Passwort-Kombination ist nicht korrekt.");
       }
 
       if (!$view->invalid) {
@@ -43,7 +51,7 @@ class UserController {
         $sessionHandler->signInAsId($user->id);
         global $config;
         $path = $config["path"];
-        header("Location:{$path}user?blogid=" . $user->id);
+        header("Location:{$path}user?blogId=" . $user->id);
         die("Login successfull.");
       }
     }
@@ -92,7 +100,7 @@ class UserController {
 
         global $config;
         $path = $config["path"];
-        header("Location: {$path}user");
+        header("Location: {$path}user/login?registered=true");
         die("Registered successfully.");
       }
     }
